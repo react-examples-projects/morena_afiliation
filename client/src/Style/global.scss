@@ -1,0 +1,88 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+.arrows-hidden-input-number {
+  display: flex !important;
+  align-items: center;
+  justify-content: start;
+
+  input {
+    display: block;
+    margin: 2px;
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+    padding: 4px;
+    text-align: center;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+}
+
+.d-block-100 {
+  display: block;
+  width: 100%;
+}
+
+.page-loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #fff;
+  @extend .center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+
+.d-column {
+  display: flex !important;
+  flex-direction: column;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-gray {
+  color: rgb(71, 85, 105) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.295);
+  border-radius: 4px;
+}

@@ -60,7 +60,7 @@ export default function FormUser({ setUsers }) {
       <div className="center">
         <form style={{ width: "100%" }} onSubmit={onSubmit}>
           <Grid.Container gap={1}>
-            <Grid xs={24} sm={12} md={6} lg={6}>
+            <Grid xs={24} sm={12} md={5} lg={5}>
               <div className="d-column">
                 <label htmlFor="section" className="mb-1">
                   Sección
@@ -82,8 +82,8 @@ export default function FormUser({ setUsers }) {
               </div>
             </Grid>
 
-            <Grid xs={0} sm={0} md={9} lg={9}>
-              <Image src={MorenaLogo} width="400px" height="100px" />
+            <Grid xs={0} sm={0} md={10} lg={10}>
+              <Image src={MorenaLogo} width="400px" height="121px" />
             </Grid>
 
             <Grid xs={24} sm={12} md={9} lg={9}>
@@ -123,6 +123,10 @@ export default function FormUser({ setUsers }) {
               </label>
             </Grid>
 
+            <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
+              <Text b small className="text-morena">Datos del afiliado</Text>
+            </Grid>
+
             <Grid xs={24} sm={24} md={12} lg={12}>
               <label htmlFor="last_name" className="text-gray d-block-100">
                 Apellido Paterno
@@ -132,7 +136,6 @@ export default function FormUser({ setUsers }) {
                   name="last_name"
                   id="last_name"
                   placeholder="Mendez Ortega"
-                  htmlType="last_name"
                   required
                 />
               </label>
@@ -150,7 +153,125 @@ export default function FormUser({ setUsers }) {
                   name="mother_last_name"
                   id="mother_last_name"
                   placeholder="Vazquez"
-                  htmlType="mother_last_name"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
+              <Text b small className="text-morena">Fecha de afiliación</Text>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={15} lg={15}>
+              <label htmlFor="names" className="text-gray d-block-100">
+                Nombres
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="names"
+                  id="names"
+                  placeholder="Luis José"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={9} lg={9}>
+              <label
+                htmlFor="membership_date"
+                className="text-gray d-block-100"
+              >
+                Fecha de afiliación
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="membership_date"
+                  id="membership_date"
+                  placeholder="Luis José"
+                  htmlType="date"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
+              <Text b small className="text-morena">Domicio</Text>
+            </Grid>
+            <Grid xs={24} sm={24} md={6} lg={6}>
+              <label htmlFor="street" className="text-gray d-block-100">
+                Calle
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="street"
+                  id="street"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={6} lg={6}>
+              <label htmlFor="no_ext" className="text-gray d-block-100">
+                No. Ext
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="no_ext"
+                  htmlType="number"
+                  id="no_ext"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={6} lg={6}>
+              <label htmlFor="no_int" className="text-gray d-block-100">
+                No. Int
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="no_int"
+                  htmlType="number"
+                  id="no_int"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={6} lg={6}>
+              <label htmlFor="colonia" className="text-gray d-block-100">
+                Colonia
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="colonia"
+                  id="colonia"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={12} lg={12}>
+              <label htmlFor="municipality" className="text-gray d-block-100">
+                Delegación o Municipio
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="municipality"
+                  id="municipality"
+                  required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={12} lg={12}>
+              <label htmlFor="entity" className="text-gray d-block-100">
+                Entidad
+                <Input
+                  className="mt-1"
+                  width="100%"
+                  name="entity"
+                  id="entity"
                   required
                 />
               </label>
@@ -163,8 +284,8 @@ export default function FormUser({ setUsers }) {
           />
           <div>
             <Button
-              type="success"
-              className="mr-2"
+              type="error"
+              className="mt-3 btn-morena"
               auto
               htmlType="submit"
               disabled={createUserMutation.isLoading}

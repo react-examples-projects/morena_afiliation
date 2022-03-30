@@ -46,8 +46,14 @@ function isRequestAjaxOrApi(req) {
   return !req.accepts("html") || req.xhr;
 }
 
+const validateEmail = (email) => {
+  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+};
+
 module.exports = {
   message,
+  validateEmail,
   getTokenInfo,
   hashPassword,
   isInvalidPassword,

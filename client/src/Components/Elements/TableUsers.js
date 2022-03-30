@@ -50,10 +50,12 @@ export default function TableUsers({ isLoading, isError, users }) {
   return (
     <div className={styles.tableUsers}>
       <Table data={users} className="pr-1">
-        <Table.Column prop="name" label="Nombre" />
-        <Table.Column prop="age" label="Edad" />
+        <Table.Column prop="names" label="Nombre" />
+        <Table.Column prop="municipality" label="Municipio" />
         <Table.Column prop="email" label="Correo" />
-        <Table.Column prop="whatsapp" label="Whatsapp" />
+        <Table.Column prop="colonia" label="Colonia" />
+        <Table.Column prop="street" label="Calle" />
+        <Table.Column prop="membership_date" label="Fecha de afiliación" />
       </Table>
     </div>
   );

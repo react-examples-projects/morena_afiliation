@@ -1,6 +1,19 @@
 const { Schema, model } = require("mongoose");
+const { validateEmail } = require("../helpers/utils");
 const UserSchema = new Schema(
   {
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      unique: true,
+      required: "El correo es obligatorio",
+      validate: [validateEmail, "Coloca un correo válido"],
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Coloca un correo válido",
+      ],
+    },
     section: {
       type: Number,
       required: [true, "El código de sección es obligatorio"],

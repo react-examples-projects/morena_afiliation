@@ -2,6 +2,10 @@ const yup = require("yup");
 
 const userSchemaValidation = yup.object({
   body: yup.object({
+    email: yup
+      .string()
+      .email("Coloca un correo válido")
+      .required("El correo es obligatorio"),
     section: yup.string().required("El código de sección es obligatorio"),
     postal_code: yup.number().required("El código postal es obligatorio"),
     phone_lada: yup.number().required("El teléfono lada es obligatorio"),

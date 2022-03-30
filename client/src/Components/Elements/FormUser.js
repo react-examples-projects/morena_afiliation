@@ -10,6 +10,11 @@ import MorenaLogo from "../../Assets/morena_logo.PNG";
 export default function FormUser({ setUsers }) {
   const createUserMutation = useMutation((user) => createUser(user));
   const [error, setError] = useState(null);
+  const [section, setSection] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [phoneLanda, setPhoneLanda] = useState("");
+  const [phone, setPhone] = useState("");
+
   const { setToast } = useToasts();
   const inputCodeProps = {
     className: "arrows-hidden-input-number",
@@ -23,25 +28,30 @@ export default function FormUser({ setUsers }) {
     e.preventDefault();
     setError(null);
     try {
-      const obj = {
-        name: e.target.name.value,
-        email: e.target.email.value,
-        age: e.target.age.value,
-        whatsapp: e.target.whatsapp.value,
-      };
+      // const obj = {
+      //   name: e.target.name.value,
+      //   email: e.target.email.value,
+      //   age: e.target.age.value,
+      //   whatsapp: e.target.whatsapp.value,
+      // };
 
-      await userCreateSchema.validate(obj);
+      // await userCreateSchema.validate(obj);
       const fd = new FormData(e.target);
+      fd.append("section", section);
+      fd.append("postal_code", postalCode);
+      fd.append("phone_lada", phoneLanda);
+      fd.append("phone", phone);
+
       const data = await createUserMutation.mutateAsync(fd);
 
       if (data?.ok) {
         setToast({
-          text: `El usuario ${obj.name} se agrego correctamente.`,
+          text: `El usuario ${e.target.name} se agrego correctamente.`,
           type: "success",
           delay: 4000,
         });
 
-        setUsers((users) => setUsers([...users, obj]));
+        //setUsers((users) => setUsers([...users, obj]));
       } else {
         setToast({
           text: `Error al agregar el usuario.`,
@@ -55,6 +65,11 @@ export default function FormUser({ setUsers }) {
     }
   };
 
+  const onChangeSection = (value) => setSection(value);
+  const onChangePostalCode = (value) => setPostalCode(value);
+  const onChangePhoneLanda = (value) => setPhoneLanda(value);
+  const onChangePhone = (value) => setPhone(value);
+
   return (
     <div className="mt-3 mb-5" data-aos="fade-up" data-aos-duration="900">
       <div className="center">
@@ -65,6 +80,8 @@ export default function FormUser({ setUsers }) {
                 <label htmlFor="section" className="mb-1">
                   Sección
                   <ReactCodeInput
+                    onChange={onChangeSection}
+                    value={section}
                     type="number"
                     fields={4}
                     {...inputCodeProps}
@@ -74,6 +91,8 @@ export default function FormUser({ setUsers }) {
                 <label htmlFor="postal_code" className="mb-1 mt-1">
                   Código postal
                   <ReactCodeInput
+                    onChange={onChangePostalCode}
+                    value={postalCode}
                     type="number"
                     fields={5}
                     {...inputCodeProps}
@@ -91,6 +110,8 @@ export default function FormUser({ setUsers }) {
                 <label htmlFor="phone_lada" className="mb-1">
                   Teléfono con landa
                   <ReactCodeInput
+                    onChange={onChangePhoneLanda}
+                    value={phoneLanda}
                     type="number"
                     fields={10}
                     {...inputCodeProps}
@@ -100,6 +121,8 @@ export default function FormUser({ setUsers }) {
                 <label htmlFor="phone" className="mb-1 mt-1">
                   Celular
                   <ReactCodeInput
+                    onChange={onChangePhone}
+                    value={phone}
                     type="number"
                     fields={10}
                     {...inputCodeProps}
@@ -124,7 +147,9 @@ export default function FormUser({ setUsers }) {
             </Grid>
 
             <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
-              <Text b small className="text-morena">Datos del afiliado</Text>
+              <Text b small className="text-morena">
+                Datos del afiliado
+              </Text>
             </Grid>
 
             <Grid xs={24} sm={24} md={12} lg={12}>
@@ -159,7 +184,9 @@ export default function FormUser({ setUsers }) {
             </Grid>
 
             <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
-              <Text b small className="text-morena">Fecha de afiliación</Text>
+              <Text b small className="text-morena">
+                Fecha de afiliación
+              </Text>
             </Grid>
 
             <Grid xs={24} sm={24} md={15} lg={15}>
@@ -195,7 +222,9 @@ export default function FormUser({ setUsers }) {
             </Grid>
 
             <Grid xs={24} sm={24} md={24} lg={24} className="py-0">
-              <Text b small className="text-morena">Domicio</Text>
+              <Text b small className="text-morena">
+                Domicio
+              </Text>
             </Grid>
             <Grid xs={24} sm={24} md={6} lg={6}>
               <label htmlFor="street" className="text-gray d-block-100">

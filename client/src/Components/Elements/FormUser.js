@@ -13,9 +13,16 @@ export default function FormUser({ setUsers }) {
   const [section, setSection] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [phoneLanda, setPhoneLanda] = useState("");
+  const [selectorKey, setSelectorKey] = useState("");
   const [phone, setPhone] = useState("");
-
   const { setToast } = useToasts();
+
+  const onChangeSection = (value) => setSection(value);
+  const onChangePostalCode = (value) => setPostalCode(value);
+  const onChangePhoneLanda = (value) => setPhoneLanda(value);
+  const onChangePhone = (value) => setPhone(value);
+  const onChangeSelectorKey = (value) => setSelectorKey(value);
+
   const inputCodeProps = {
     className: "arrows-hidden-input-number",
     inputStyle: {
@@ -28,30 +35,43 @@ export default function FormUser({ setUsers }) {
     e.preventDefault();
     setError(null);
     try {
-      // const obj = {
-      //   name: e.target.name.value,
-      //   email: e.target.email.value,
-      //   age: e.target.age.value,
-      //   whatsapp: e.target.whatsapp.value,
-      // };
+      const obj = {
+        email: e.target.email.value,
+        postal_code: postalCode,
+        section,
+        phone_lada: phoneLanda,
+        phone,
+        last_name: e.target.last_name.value,
+        mother_last_name: e.target.mother_last_name.value,
+        names: e.target.names.value,
+        membership_date: e.target.membership_date.value,
+        street: e.target.street.value,
+        no_ext: e.target.no_ext.value,
+        no_int: e.target.no_int.value,
+        colonia: e.target.colonia.value,
+        municipality: e.target.municipality.value,
+        entity: e.target.entity.value,
+        selector_key: selectorKey,
+      };
 
-      // await userCreateSchema.validate(obj);
+      await userCreateSchema.validate(obj);
       const fd = new FormData(e.target);
       fd.append("section", section);
       fd.append("postal_code", postalCode);
       fd.append("phone_lada", phoneLanda);
       fd.append("phone", phone);
+      fd.append("selector_key", selectorKey);
 
       const data = await createUserMutation.mutateAsync(fd);
 
       if (data?.ok) {
         setToast({
-          text: `El usuario ${e.target.name} se agrego correctamente.`,
+          text: `El usuario ${obj.names} se agrego correctamente.`,
           type: "success",
           delay: 4000,
         });
 
-        //setUsers((users) => setUsers([...users, obj]));
+        setUsers((users) => setUsers([...users, obj]));
       } else {
         setToast({
           text: `Error al agregar el usuario.`,
@@ -64,11 +84,6 @@ export default function FormUser({ setUsers }) {
       if (err.name === "ValidationError") setError(err.message);
     }
   };
-
-  const onChangeSection = (value) => setSection(value);
-  const onChangePostalCode = (value) => setPostalCode(value);
-  const onChangePhoneLanda = (value) => setPhoneLanda(value);
-  const onChangePhone = (value) => setPhone(value);
 
   return (
     <div className="mt-3 mb-5" data-aos="fade-up" data-aos-duration="900">
@@ -226,6 +241,7 @@ export default function FormUser({ setUsers }) {
                 Domicio
               </Text>
             </Grid>
+
             <Grid xs={24} sm={24} md={6} lg={6}>
               <label htmlFor="street" className="text-gray d-block-100">
                 Calle
@@ -302,6 +318,19 @@ export default function FormUser({ setUsers }) {
                   name="entity"
                   id="entity"
                   required
+                />
+              </label>
+            </Grid>
+
+            <Grid xs={24} sm={24} md={12} lg={12}>
+              <label htmlFor="selector_key" className="text-gray d-block-100">
+                Clave de selector
+                <ReactCodeInput
+                  onChange={onChangeSelectorKey}
+                  value={selectorKey}
+                  type="number"
+                  fields={18}
+                  {...inputCodeProps}
                 />
               </label>
             </Grid>

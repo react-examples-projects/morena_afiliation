@@ -84,6 +84,10 @@ const UserSchema = new Schema(
       required: [true, "La entidad es obligatoria"],
       trim: true,
     },
+    selector_key: {
+      type: Number,
+      required: [true, "La clave selector es obligatoria"],
+    },
   },
   { timestamps: true, collection: "users" }
 );
